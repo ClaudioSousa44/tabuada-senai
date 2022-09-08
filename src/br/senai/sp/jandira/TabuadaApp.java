@@ -2,7 +2,7 @@ package br.senai.sp.jandira;
 
 import br.senai.sp.jandira.gui.FrameTabuada;
 
-public class Tabuada {
+public class TabuadaApp {
 
 	public static void main(String[] args) {
 		FrameTabuada tela = new FrameTabuada();

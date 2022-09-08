@@ -12,9 +12,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import br.senai.sp.jandira.model.Multiplicação;
+import br.senai.sp.jandira.model.Tabuada;
 
 public class FrameTabuada {
 	public String titulo;
@@ -36,7 +38,7 @@ public class FrameTabuada {
 		labeltabuada1.setBounds(100, 20, 200, 30);
 		labeltabuada1.setFont(new Font(null, 0, 30));
 		
-		ImageIcon icon = new ImageIcon("C:/Users/cauhs/eclipse-workspace/tabuada/src/br/senai/sp/jandira/model/matematica.png");
+		ImageIcon icon = new ImageIcon("C:/Users/22282470/eclipse-workspace/tabuada-senai/src/br/senai/sp/jandira/matematica.png");
 		JLabel icone = new JLabel(icon);
 		icone.setBounds(20, 20, 80, 80);
 		
@@ -93,15 +95,13 @@ public class FrameTabuada {
 		labelResultado.setText("Resultado:");
 		labelResultado.setFont(new Font(null, 0, 20));
 		labelResultado.setBounds(95, 350, 200, 30);
-
-
-		JLabel labelLista = new JLabel();
-		labelLista.setBackground(Color.YELLOW);
-		labelLista.setBounds(95, 385, 400, 350);
-		labelLista.setForeground(Color.green);
 		
 		
-		
+		JScrollPane scroll = new JScrollPane();
+		scroll.setBounds(95, 385, 400, 350);
+		JList lista = new JList();
+		lista.setBackground(Color.YELLOW);
+		lista.setForeground(Color.green);
 		
 		
 		
@@ -119,10 +119,8 @@ public class FrameTabuada {
 		painel.add(buttonCalcular);
 		painel.add(buttonLimpar);
 		painel.add(labelResultado);
-		painel.add(labelLista);
-		
-		
-		
+		painel.add(scroll);
+		painel.add(lista);
 		
 		
 		tela.setVisible(true);
@@ -131,17 +129,25 @@ public class FrameTabuada {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Multiplicação mult = new Multiplicação();
-				mult.multiplicando = Integer.parseInt(textFieldMaxMult.getText());
-				mult.minMult = Integer.parseInt(textFieldMinMult.getText());
-				mult.maxMult = Integer.parseInt(textFieldMaxMult.getText());
 				
-				
-				
-				
-				
-				
-				
+				Tabuada tabuada = new Tabuada();
+				tabuada.multiplicando = Integer.parseInt(textFieldMultiplicando.getText());
+				tabuada.minMult = Integer.parseInt(textFieldMinMult.getText());
+				tabuada.maxMult = Integer.parseInt(textFieldMaxMult.getText());
+			
+					if(tabuada.maxMult < tabuada.minMult) {
+					JOptionPane.showMessageDialog(null, "Multiplicador mínimo maior que o máximo", "ERROR", JOptionPane.OK_OPTION );
+					textFieldMaxMult.setText("");
+					textFieldMinMult.setText("");
+					textFieldMultiplicando.setText("");
+					
+					
+					
+					
+				} else {
+					lista.setListData(tabuada.getTabuada());
+				    scroll.getViewport().add(lista);
+				}
 				
 				
 				
@@ -149,7 +155,23 @@ public class FrameTabuada {
 				
 			}
 		});
+		
+		buttonLimpar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				textFieldMaxMult.setText("");
+				textFieldMinMult.setText("");
+				textFieldMultiplicando.setText("");
+				
+				DefaultListModel<String> model = new DefaultListModel<>();
+				lista.setModel(model);;
+				
+			}
+		});
 	}
+	
+	
 	
 
 }

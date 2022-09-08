@@ -2,7 +2,7 @@ package br.senai.sp.jandira.model;
 
 
 
-public class Multiplicação {
+public class Tabuada {
 	public int multiplicando;
 	public int minMult;
 	public int maxMult;
@@ -14,7 +14,7 @@ public class Multiplicação {
 		
 		
 		int i = 0;
-		while(i <= tamanho) {
+		while(i < tamanho) {
 			int resultadoConta = multiplicando * minMult;
 			String resultado = multiplicando + " X " + minMult + " = " + resultadoConta;
 			tabuada[i] = resultado;

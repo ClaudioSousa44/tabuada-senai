@@ -61,6 +61,7 @@ public class FrameTabuada {
 		textFieldMultiplicando.setBounds(320, 120, 200, 30);
 		textFieldMultiplicando.setForeground(Color.blue);
 		textFieldMultiplicando.setFont(new Font(null, 0, 20));
+		textFieldMultiplicando.setHorizontalAlignment(JTextField.RIGHT);
 		
 		JLabel labelMinMulti = new JLabel();
 		labelMinMulti.setText("Mínimo Multiplicador:");
@@ -71,6 +72,7 @@ public class FrameTabuada {
 		textFieldMinMult.setBounds(320, 170, 200, 30);
 		textFieldMinMult.setForeground(Color.blue);
 		textFieldMinMult.setFont(new Font(null, 0, 20));
+		textFieldMinMult.setHorizontalAlignment(JTextField.RIGHT);
 		
 		JLabel labelMaxMulti = new JLabel();
 		labelMaxMulti.setText("Máximo Multiplicador:");
@@ -81,6 +83,7 @@ public class FrameTabuada {
 		textFieldMaxMult.setBounds(320, 220, 200, 30);
 		textFieldMaxMult.setForeground(Color.blue);
 		textFieldMaxMult.setFont(new Font(null, 0, 20));
+		textFieldMaxMult.setHorizontalAlignment(JTextField.RIGHT);
 		
 		JButton buttonCalcular = new JButton();
 		buttonCalcular.setBackground(Color.green);

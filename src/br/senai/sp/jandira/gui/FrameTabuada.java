@@ -60,6 +60,7 @@ public class FrameTabuada {
 		JTextField textFieldMultiplicando = new JTextField();
 		textFieldMultiplicando.setBounds(320, 120, 200, 30);
 		textFieldMultiplicando.setForeground(Color.blue);
+		textFieldMultiplicando.setFont(new Font(null, 0, 20));
 		
 		JLabel labelMinMulti = new JLabel();
 		labelMinMulti.setText("Mínimo Multiplicador:");
@@ -69,6 +70,7 @@ public class FrameTabuada {
 		JTextField textFieldMinMult = new JTextField();
 		textFieldMinMult.setBounds(320, 170, 200, 30);
 		textFieldMinMult.setForeground(Color.blue);
+		textFieldMinMult.setFont(new Font(null, 0, 20));
 		
 		JLabel labelMaxMulti = new JLabel();
 		labelMaxMulti.setText("Máximo Multiplicador:");
@@ -78,18 +80,19 @@ public class FrameTabuada {
 		JTextField textFieldMaxMult = new JTextField();
 		textFieldMaxMult.setBounds(320, 220, 200, 30);
 		textFieldMaxMult.setForeground(Color.blue);
+		textFieldMaxMult.setFont(new Font(null, 0, 20));
 		
 		JButton buttonCalcular = new JButton();
 		buttonCalcular.setBackground(Color.green);
 		buttonCalcular.setText("Calcular");
 		buttonCalcular.setBounds(95, 280, 235, 50);
-		buttonCalcular.setForeground(Color.white);
+		buttonCalcular.setForeground(Color.black);
 		
 		JButton buttonLimpar = new JButton();
 		buttonLimpar.setBackground(Color.orange);
 		buttonLimpar.setText("Limpar");
 		buttonLimpar.setBounds(340, 280, 180, 50);
-		buttonLimpar.setForeground(Color.white);
+		buttonLimpar.setForeground(Color.black);
 		
 		JLabel labelResultado = new JLabel();
 		labelResultado.setText("Resultado:");
@@ -100,8 +103,9 @@ public class FrameTabuada {
 		JScrollPane scroll = new JScrollPane();
 		scroll.setBounds(95, 385, 400, 350);
 		JList lista = new JList();
-		lista.setBackground(Color.YELLOW);
-		lista.setForeground(Color.green);
+		lista.setBackground(new Color(253, 238, 234));
+		lista.setForeground(Color.black);
+		lista.setFont(new Font(null, 0, 20));
 		
 		
 		
@@ -130,24 +134,39 @@ public class FrameTabuada {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				Tabuada tabuada = new Tabuada();
-				tabuada.multiplicando = Integer.parseInt(textFieldMultiplicando.getText());
-				tabuada.minMult = Integer.parseInt(textFieldMinMult.getText());
-				tabuada.maxMult = Integer.parseInt(textFieldMaxMult.getText());
-			
-					if(tabuada.maxMult < tabuada.minMult) {
-					JOptionPane.showMessageDialog(null, "Multiplicador mínimo maior que o máximo", "ERROR", JOptionPane.OK_OPTION );
-					textFieldMaxMult.setText("");
-					textFieldMinMult.setText("");
-					textFieldMultiplicando.setText("");
-					
-					
-					
-					
+				
+				
+				if(textFieldMaxMult.getText().isEmpty()) {
+					  JOptionPane.showMessageDialog(null, "Máximo multiplicador está vazio", "ERROR", JOptionPane.OK_OPTION );
+				} else if (textFieldMinMult.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Mínimo multiplicador está vazio", "ERROR", JOptionPane.OK_OPTION );
+				} else if (textFieldMultiplicando.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "multiplicador está vazio", "ERROR", JOptionPane.OK_OPTION );
 				} else {
-					lista.setListData(tabuada.getTabuada());
-				    scroll.getViewport().add(lista);
+					Tabuada tabuada = new Tabuada();
+					tabuada.multiplicando = Integer.parseInt(textFieldMultiplicando.getText());
+					tabuada.minMult = Integer.parseInt(textFieldMinMult.getText());
+					tabuada.maxMult = Integer.parseInt(textFieldMaxMult.getText());
+				
+						if(tabuada.maxMult >= tabuada.minMult) {
+							lista.setListData(tabuada.getTabuada());
+ 						    scroll.getViewport().add(lista);
+						
+						
+						
+						
+				} else {
+					    JOptionPane.showMessageDialog(null, "Multiplicador mínimo maior que o máximo", "ERROR", JOptionPane.OK_OPTION );
+						textFieldMaxMult.setText("");
+					textFieldMinMult.setText("");
+						textFieldMultiplicando.setText("");
+					}
+					
 				}
+				
+	
+				
+				
 				
 				
 				
